@@ -1,11 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static List<Product> products = new ArrayList<>();
+    protected static List<Employee> employees = new ArrayList<>();
+    protected static List<Product> products = new ArrayList<>();
+
+
+
     public static void main(String[] args) {
         Scanner inputScanner = new Scanner(System.in);
         System.out.print("Enter the name of the CSV file for employees: ");
@@ -20,14 +25,13 @@ public class Main {
                 String line = scanner.nextLine();
 
                 String[] columns = line.split(",");
-                int employeeId= Integer.parseInt(columns[0]);
+                int employeeId = Integer.parseInt(columns[0]);
                 String firstName = columns[1];
                 String lastName = columns[2];
                 int age = Integer.parseInt(columns[3]);
                 int salary = Integer.parseInt(columns[4]);
 
-                System.out.println("Id: " + employeeId + ", First name: " + firstName +
-                        " , Last name: "+ lastName + " , Age: " + age + " , Salary: " + salary);
+                employees.add(new Employee(employeeId, firstName, lastName, age, salary));
             }
 
             scanner.close();
@@ -47,17 +51,22 @@ public class Main {
                 String line = scanner.nextLine();
 
                 String[] columns = line.split(",");
-                int productId= Integer.parseInt(columns[0]);
+                int productId = Integer.parseInt(columns[0]);
                 String productName = columns[1];
-                double price= Double.parseDouble(columns[2]);
-                int quantity= Integer.parseInt(columns[3]);
+                double price = Double.parseDouble(columns[2]);
+                int quantity = Integer.parseInt(columns[3]);
                 String type = columns[4];
-                String color = columns[5];
-                String expirationDate = columns[6];
+                String color = "";
+                if (columns.length > 5 && !columns[5].isEmpty()) {
+                    color = columns[5];
+                }
+                String expirationDate = "";
 
-                System.out.println("Id: " + productId + ", name: " + productName +
-                        " , Price: "+ price + " , Quantity: " + quantity + " , Type: " + type
-                        + " , Color: " + color+ " , Expiration Date: " + expirationDate);
+                if (columns.length > 6 && !columns[6].isEmpty()) {
+                    expirationDate = columns[6];
+                }
+
+                products.add(new Product(productId, productName, price, quantity, type, color, expirationDate));
             }
 
             scanner.close();
@@ -65,11 +74,30 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println();
-        System.out.println("Select a mode: \n 1. Employee \n 2. Customer" );
+        System.out.println("Select a mode: \n 1. Employee \n 2. Customer");
         int userChoice = inputScanner.nextInt();
         if (userChoice == 1) {
-            // TODO
+
+            boolean successfulLogin = false;
+
+            do {
+                System.out.print("Enter your id: ");
+                int id = inputScanner.nextInt();
+                inputScanner.nextLine();
+
+                System.out.print("Enter your name: ");
+                String name = inputScanner.nextLine();
+
+                if (CheckEmployeeInfo.checkEmployeeCredentials(id, name)) {
+                    System.out.println("Successful login as an employee.");
+                    successfulLogin = true;
+                } else {
+                    System.out.println("Login failed. Please try again later..");
+                }
+            } while (!successfulLogin);
             System.out.println("You are in employee mode.");
+
+            // TODO
         } else if (userChoice == 2) {
             // TODO
             System.out.println("You are in customer mode.");
