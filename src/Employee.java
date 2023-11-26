@@ -1,9 +1,12 @@
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Employee {
     int employeeId;
     String firstName;
     private String last_name;
     private int age;
-    private double salary;
+    protected double salary;
 
     public Employee(int employeeId, String firstName, String last_name, int age, double salary) {
         this.employeeId = employeeId;
@@ -13,23 +16,14 @@ public class Employee {
         this.salary = salary;
     }
 
-    public int getEmployee_id() {
-        return employeeId;
+
+    static void sortEmployeesByName() {
+        Collections.sort(Main.employees, Comparator.comparing(e -> e.firstName));
+        System.out.println("Employees sorted by name.");
     }
 
-    public String getFirst_name() {
-        return firstName;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public double getSalary() {
-        return salary;
+    static void sortEmployeesBySalary() {
+        Collections.sort(Main.employees, Comparator.comparingInt(e -> (int) e.salary));
+        System.out.println("Employees sorted by salary.");
     }
 }
