@@ -92,11 +92,12 @@ public class Main {
                 }
             } while (!successfulLogin);
             System.out.println("You are in employee mode.");
-            showMenu();
+            Product.showMenu();
             // TODO
         } else if (userChoice == 2) {
             // TODO
             System.out.println("You are in customer mode.");
+            Customer.showCustomerMenu();
         } else {
             System.out.println("Invalid selection. The program ends.");
         }
@@ -104,94 +105,7 @@ public class Main {
         inputScanner.close();
     }
 
-    private static void showMenu() {
-        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            System.out.println("\nMenu:  \n" +
-                    "1. Print all products \n" +
-                    "2. Print products sorted by name \n" +
-                    "3. Print products sorted by price \n" +
-                    "4. Print products sorted by expiration date \n" +
-                    "5. Print a specific product \n" +
-                    "6. Print products with price greater than or equal to \n" +
-                    "7. Print products with price less than \n" +
-                    "8. Print products with quantity greater than or equal to \n" +
-                    "9. Print products with quantity less than \n" +
-                    "10. Add a new product \n" +
-                    "11. Change product price (by ID) \n" +
-                    "12. Change product quantity (by ID) \n" +
-                    "13. Change product name (by ID) \n" +
-                    "14. Delete a product (by ID) \n" +
-                    "15. Sort employees by name \n" +
-                    "16. Sort employees by salary \n" +
-                    "17. Save and exit \n" +
-                    "18. Exit without saving");
-
-            System.out.print("Select an option: ");
-            int choice = scanner.nextInt();
-
-            switch (choice) {
-                case 1:
-                    Product.printAllProducts();
-                    break;
-                case 2:
-                    Product.printProductsSortedByName();
-                    break;
-                case 3:
-                    Product.printProductsSortedByPrice();
-                    break;
-                case 4:
-                    Product.printProductsSortedByExpirationDate();
-                    break;
-                case 5:
-                    Product.printSpecificProduct();
-                    break;
-                case 6:
-                    Product.printProductsWithPriceGreaterThanOrEqual();
-                    break;
-                case 7:
-                    Product.printProductsWithPriceLessThan();
-                    break;
-                case 8:
-                    Product.printProductsWithQuantityGreaterThanOrEqual();
-                    break;
-                case 9:
-                    Product.printProductsWithQuantityLessThan();
-                    break;
-                case 10:
-                    Product.addProduct();
-                    break;
-                case 11:
-                    Product.changeProductPrice();
-                    break;
-                case 12:
-                    Product.changeProductQuantity();
-                    break;
-                case 13:
-                    Product.changeProductName();
-                    break;
-                case 14:
-                    Product.deleteProduct();
-                    break;
-                case 15:
-                    Employee.sortEmployeesByName();
-                    break;
-                case 16:
-                    Employee.sortEmployeesBySalary();
-                    break;
-                case 17:
-                    Product.saveProductsToFile();
-                    System.out.println("Changes saved to file. Exiting the system. Goodbye!");
-                    System.exit(0);
-                case 18:
-                    System.out.println("Exiting the system. Goodbye!");
-                    System.exit(0);
-                default:
-                    System.out.println("Invalid choice. Try again.");
-            }
-        }
-    }
 
 
 }
