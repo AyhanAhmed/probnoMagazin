@@ -282,7 +282,7 @@ public class Product {
 
         System.out.println("Search Results:");
         for (Product product : Main.products) {
-            if (product.quantity >= 1 && product.getType().equals(categoryInput)) {
+            if (product.quantity >= 1 && product.getType().toString().equals(categoryInput)) {
                 printProductDetails(product);
             }
         }
