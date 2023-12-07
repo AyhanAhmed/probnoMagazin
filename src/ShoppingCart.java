@@ -38,8 +38,9 @@ public class ShoppingCart {
         }
         return null;
     }
+
     public static void addProduct(Product product, int quantity) {
-        Product productInCart = new Product(product.productId, product.productName, product.price, quantity, product.getType(),product.color, product.expirationDate);
+        Product productInCart = new Product(product.productId, product.productName, product.price, quantity, product.getType(), product.color, product.expirationDate);
         productsInCart.add(productInCart);
     }
 
@@ -53,4 +54,5 @@ public class ShoppingCart {
 
         return totalPrice;
     }
+
 }

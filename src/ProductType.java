@@ -6,10 +6,10 @@ public enum ProductType {
     others;
 
 
-
     public ProductType getDescription() {
-        for(ProductType type : ProductType.values()){
-        return type;}
+        for (ProductType type : ProductType.values()) {
+            return type;
+        }
         return null;
     }
 }
